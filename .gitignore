@@ -1,0 +1,24 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environments (if applicable)
+venv/
+env/
+
+# System-specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+*.bak
+*.swp
+
+# Generated output files (e.g., images, reports)
+output/
+*.png
+*.xlsx
+
+# Ignore any local Git config overrides
+.git/
