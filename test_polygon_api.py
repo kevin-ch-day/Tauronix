@@ -18,7 +18,7 @@ def process_stock_data(data):
 
     # Iterate through the stock data
     for result in data['results']:
-        date = datetime.fromtimestamp(result['t'] / 1000).strftime('%Y-%m-%d')  # Format the timestamp into a readable date
+        date = datetime.fromtimestamp(result['t'] / 1000).strftime('%Y-%m-%d')
         open_price = result['o']  # Get the opening price
         close_price = result['c']  # Get the closing price
         high_price = result['h']  # Get the highest price
@@ -79,12 +79,12 @@ def format_response(data):
     stock_data = process_stock_data(data)
 
     # Print table header
-    print(f"{'Date':<15} {'Open':<10} {'Close':<10} {'High':<10} {'Low':<10} {'Volume':<15} {'VW':<10}")
+    print(f"{'Date':<15} {'Open':<10} {'Close':<10} {'High':<10} {'Low':<10} {'Volume':<15} {'VWAP':<10}")
 
     # Loop through the processed data and display it
     for i in range(stock_data['count']):
         print(f"{stock_data['dates'][i]:<15} {stock_data['opening_prices'][i]:<10} {stock_data['closing_prices'][i]:<10} "
-              f"{stock_data['stock_highs'][i]:<10} {stock_data['stock_lows'][i]:<10} {stock_data['volumes'][i]:<15} "
+              f"{stock_data['stock_highs'][i]:<10} {stock_data['stock_lows'][i]:<10} {stock_data['volume'][i]:<15} "
               f"{stock_data['vwaps'][i]:<10}")
 
     # Display summary statistics

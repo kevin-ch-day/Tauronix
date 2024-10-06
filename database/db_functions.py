@@ -4,7 +4,7 @@ import datetime
 from . import db_connection as db
 
 def get_polygon_api_key():
-    """Retrieve the Polygon API key from the database and update the last_used timestamp."""
+    # Retrieve the Polygon API key from the database and update the last_used timestamp.
     
     query_select_key = """
         SELECT api_key FROM polygon_api_keys
@@ -43,7 +43,8 @@ def get_polygon_api_key():
         return None
 
 def retrieve_company_info():
-    """Retrieve company information from the database."""
+    # Retrieve company information from the database.
+
     query = "SELECT CompanyID, CompanyName, Location, StockSymbol FROM company_info ORDER BY CompanyID"
     try:
         connection = db.create_connection()
@@ -95,7 +96,8 @@ def retrieve_company_disclosure_dates():
         return None
 
 def retrieve_stock_data():
-    """Retrieve all stock data from the database ordered by CompanyID."""
+    # Retrieve all stock data from the database ordered by CompanyID.
+
     query = "SELECT * FROM stock_data ORDER BY CompanyID, Date"
     try:
         connection = db.create_connection()
@@ -117,7 +119,8 @@ def retrieve_stock_data():
         return None
 
 def retrieve_dow_jones_data():
-    """Retrieve Dow Jones data from the database."""
+    # Retrieve Dow Jones data from the database.
+
     query = "SELECT * FROM dow_jones ORDER BY Date"
     try:
         connection = db.create_connection()
@@ -139,12 +142,8 @@ def retrieve_dow_jones_data():
         return None
 
 def retrieve_stock_price_and_dow_jones_data(company_ids=None):
-    """
-    Retrieve combined data from multiple tables, with an optional filter for specific company IDs.
-    
-    Parameters:
-    company_ids (list): Optional list of company IDs to filter the data. If None, data for all companies is retrieved.
-    """
+    # Retrieve combined data from multiple tables, with an optional filter for specific company IDs.
+
     # Base query
     query = """
         SELECT x.CompanyID 'Company ID',
@@ -204,9 +203,7 @@ def retrieve_stock_price_and_dow_jones_data(company_ids=None):
 
 
 def get_company_id_by_name(company_name):
-    """
-    Retrieves the CompanyID for a given company name from the company_info table.
-    """
+    # Retrieves the CompanyID for a given company name from the company_info table.
    
     try:
         connection = db.create_connection()
@@ -223,7 +220,8 @@ def get_company_id_by_name(company_name):
             connection.close()
 
 def get_company_id_and_name_by_symbol(stock_symbol):
-    """Retrieve the CompanyID and CompanyName based on the stock symbol."""
+    # Retrieve the CompanyID and CompanyName based on the stock symbol.
+
     try:
         connection = db.create_connection()
         if connection:
@@ -246,9 +244,8 @@ def get_company_id_and_name_by_symbol(stock_symbol):
             connection.close()
 
 def get_company_stock_record_on_date(company_id, date):
-    """
-    Retrieves stock data for a specific company on a given date.
-    """
+    # Retrieves stock data for a specific company on a given date.
+    
     if isinstance(date, datetime.datetime):
         date = date.strftime('%Y-%m-%d')
 
